@@ -9,11 +9,16 @@ dataframe = pd.read_csv("data.csv")
 dataframe.pop('id')
 dataframe['diagnosis'] = dataframe['diagnosis'].replace({'M': '0'})
 dataframe['diagnosis'] = dataframe['diagnosis'].replace({'B': '1'})
-print(dataframe)
 X = dataframe.iloc[:, 0:-1]
 X = X.to_numpy()
 
+scaler = MinMaxScaler()
+X = scaler.fit_transform(X)
+
+print(X)
+# print(dataframe)
+
 # y = dataframe['DEATH_EVENT']
 # y = y.to_numpy()
-print(X.shape)
+# print(X.shape)
 # print(y.shape)
